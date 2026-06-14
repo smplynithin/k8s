@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: devshelf-redis
+  labels:
+    app: devshelf
+    tier: redis
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: devshelf
+      tier: redis
+  template:
+    metadata:
+      labels:
+        app: devshelf
+        tier: redis
+    spec:
+      containers:
+        - name: redis
+          image: redis:7-alpine
+          ports:
+            - containerPort: 6379
