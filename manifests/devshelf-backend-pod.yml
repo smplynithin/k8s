@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: devshelf-backend
+  labels: 
+    app: devshelf
+    tier: backend
+spec:
+  containers:
+    - name: backend
+      image: smplynithin/devshelf-backend:latest
+      ports:
+        - containerPort: 8000
