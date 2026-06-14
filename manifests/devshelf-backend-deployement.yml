@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: devshelf-backend
+  labels:
+    app: devshelf
+    tier: backend
+spec:
+  replicas: 2
+  selector: 
+    matchLabels:
+      app: devshelf
+      tier: backend
+  template:
+    metadata:
+      labels: 
+        app: devshelf
+        tier: backend
+    spec:
+      containers:
+        - name: backend
+          image: smplynithin/devshelf-backend:latest
+          ports: 
+            - containerPort: 8000   
