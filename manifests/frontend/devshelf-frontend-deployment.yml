@@ -6,7 +6,7 @@ metadata:
     app: devshelf
     tier: frontend
 spec:
-  replicas: 2
+  replicas: 3
   selector:
     matchLabels:
       app: devshelf
@@ -17,6 +17,11 @@ spec:
         app: devshelf
         tier: frontend
     spec:
+      tolerations:
+        - key: "app"
+          operator: "Equal"
+          value: "devshelf"
+          effect: "NoSchedule"
       containers:
         - name: frontend
           image: smplynithin/devshelf-frontend:latest

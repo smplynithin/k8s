@@ -15,6 +15,11 @@ spec:
         app: devshelf
         tier: postgres
     spec:
+      tolerations:
+        - key: "app"
+          operator: "Equal"
+          value: "devshelf"
+          effect: "NoSchedule"
       containers:
         - name: postgres
           image: postgres:15-alpine

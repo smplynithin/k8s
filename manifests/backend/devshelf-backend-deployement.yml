@@ -5,34 +5,56 @@ metadata:
   labels:
     app: devshelf
     tier: backend
+
 spec:
   replicas: 2
+
   selector:
     matchLabels:
       app: devshelf
       tier: backend
+
   template:
     metadata:
       labels:
         app: devshelf
         tier: backend
+
     spec:
+      tolerations:
+        - key: "app"
+          operator: "Equal"
+          value: "devshelf"
+          effect: "NoSchedule"
+
       containers:
         - name: backend
           image: smplynithin/devshelf-backend:latest
+
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "500m"
+              memory: "512Mi"
+
           ports:
             - containerPort: 8000
+
           env:
             - name: DATABASE_URL
               valueFrom:
                 secretKeyRef:
                   name: devshelf-secrets
                   key: database-url
+
             - name: REDIS_URL
               valueFrom:
                 secretKeyRef:
                   name: devshelf-secrets
                   key: redis-url
+
           livenessProbe:
             httpGet:
               path: /health
@@ -40,6 +62,7 @@ spec:
             initialDelaySeconds: 10
             periodSeconds: 10
             failureThreshold: 3
+
           readinessProbe:
             httpGet:
               path: /health

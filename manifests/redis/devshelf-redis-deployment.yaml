@@ -17,6 +17,11 @@ spec:
         app: devshelf
         tier: redis
     spec:
+      tolerations:
+        - key: "app"
+          operator: "Equal"
+          value: "devshelf"
+          effect: "NoSchedule"
       containers:
         - name: redis
           image: redis:7-alpine
