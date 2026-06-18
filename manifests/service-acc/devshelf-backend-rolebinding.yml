@@ -1,0 +1,13 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: devshelf-backend-rolebinding
+  namespace: devshelf-prod
+subjects:
+  - kind: ServiceAccount
+    name: devshelf-backend
+    namespace: devshelf-prod
+roleRef:
+  kind: Role 
+  name: devshelf-backend-role
+  apiGroup: rbac.authorization.k8s.io

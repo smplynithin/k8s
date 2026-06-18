@@ -1,4 +1,5 @@
-apiversion: v1
-kind: ServiceAccount 
-metadata: 
-  name: devshelf-backend-sa
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: devshelf-backend
+  namespace: devshelf-prod

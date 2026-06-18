@@ -22,11 +22,9 @@ spec:
         tier: backend
 
     spec:
-      tolerations:
-        - key: "app"
-          operator: "Equal"
-          value: "devshelf"
-          effect: "NoSchedule"
+      serviceAccountName: devshelf-backend
+
+
 
       containers:
         - name: backend
