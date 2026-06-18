@@ -1,6 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  namespace: devshelf-prod
   name: devshelf-backend
   labels:
     app: devshelf
