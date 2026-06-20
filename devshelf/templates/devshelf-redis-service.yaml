@@ -1,12 +1,14 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: devshelf-postgres
+  name: devshelf-redis
   namespace: {{ .Values.namespace }}
 spec:
-  clusterIP: None
   selector:
     app: devshelf
-    tier: postgres
+    tier: redis
   ports:
-    - port: {{ .Values.postgres.port}}
+    - protocol: TCP
+      port: 6379
+      targetPort: 6379
+  type: ClusterIP

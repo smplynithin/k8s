@@ -3,7 +3,7 @@ kind: StatefulSet
 
 metadata:
   name: devshelf-postgres
-  namespace: {{ .Values.namespace }}
+  namespace: devshelf-prod
 
 spec:
   serviceName: devshelf-postgres
@@ -22,13 +22,12 @@ spec:
         tier: postgres
 
     spec:
-
       containers:
         - name: postgres
-          image: {{ .Values.postgres.image }}:{{ .Values.postgres.tag }}
+          image: postgres:15-alpine
 
           ports:
-            - containerPort: {{ .Values.postgres.port}}
+            - containerPort: 5432
 
           env:
             - name: POSTGRES_USER

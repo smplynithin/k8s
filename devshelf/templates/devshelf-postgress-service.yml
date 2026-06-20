@@ -9,4 +9,4 @@ spec:
     app: devshelf
     tier: postgres
   ports:
-    - port: {{ .Values.postgres.port}}
+    - port: 5432

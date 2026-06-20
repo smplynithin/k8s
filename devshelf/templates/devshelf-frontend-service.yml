@@ -1,12 +1,14 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: devshelf-postgres
+  name: devshelf-frontend
   namespace: {{ .Values.namespace }}
 spec:
-  clusterIP: None
   selector:
     app: devshelf
-    tier: postgres
+    tier: frontend
   ports:
-    - port: {{ .Values.postgres.port}}
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: LoadBalancer
