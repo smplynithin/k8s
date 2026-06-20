@@ -1,0 +1,16 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: devshelf-backend-monitor
+  namespace: {{ .Values.namespace }}
+  labels:
+    release: prometheus
+spec:
+  selector:
+    matchLabels:
+      app: devshelf
+      tier: backend
+  endpoints:
+    - port: http
+      path: /metrics
+      interval: 15s
