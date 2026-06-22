@@ -1,0 +1,42 @@
+namespace: devshelf-prod
+
+backend:
+  image:
+    repository: 908123139939.dkr.ecr.us-east-1.amazonaws.com/devshelf-backend
+    tag: latest
+  replicas: 2
+  port: 8000
+  resources:
+    requests:
+      cpu: "100m"
+      memory: "128Mi"
+    limits:
+      cpu: "500m"
+      memory: "512Mi"
+
+frontend:
+  image:
+    repository: 908123139939.dkr.ecr.us-east-1.amazonaws.com/devshelf-frontend
+    tag: latest
+  replicas: 2
+  port: 80
+
+postgres:
+  image: postgres
+  tag: 15-alpine
+  port: 5432
+  storage: 1Gi
+  storageClass: ebs-sc
+
+redis:
+  image: redis
+  tag: 7-alpine
+  port: 6379
+
+ingress:
+  host: devshelf.local
+
+secrets:
+  databaseUrl: ""
+  redisUrl: ""
+  postgresPassword: ""

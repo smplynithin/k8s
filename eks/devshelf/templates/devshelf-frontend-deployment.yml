@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: devshelf-frontend
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: devshelf
+    tier: frontend
+spec:
+  replicas: {{ .Values.frontend.replicas }}
+  selector:
+    matchLabels:
+      app: devshelf
+      tier: frontend
+  template:
+    metadata:
+      labels:
+        app: devshelf
+        tier: frontend
+    spec:
+      containers:
+        - name: frontend
+          image: {{ .Values.frontend.image.repository }}:{{ .Values.frontend.image.tag }}
+          ports:
+            - containerPort: 80
