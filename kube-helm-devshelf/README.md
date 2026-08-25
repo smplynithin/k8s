@@ -8,8 +8,6 @@ This phase of the project focuses on understanding Kubernetes fundamentals by de
 
 The goal was not only to deploy the application but also to understand how Docker concepts map to Kubernetes concepts.
 
----
-
 # Application Architecture
 
 The application consists of four containers:
