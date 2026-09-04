@@ -203,6 +203,11 @@ data:
 
 <img width="298" height="554" alt="image" src="https://github.com/user-attachments/assets/db2ff65b-9410-4b1c-b545-df2aed2640fc" />   <img width="270" height="894" alt="image" src="https://github.com/user-attachments/assets/5af3c450-edcb-439f-ab0d-0283d6264380" />
 
+ClusterSecretStore → HOW to access AWS
+ExternalSecret     → WHAT secret to fetch
+IRSA               → WHO is allowed to access AWS
+Kubernetes Secret  → WHERE ESO stores the synchronized secret
+
 
 | Component               | Purpose                                           |
 | ----------------------- | ------------------------------------------------- |
