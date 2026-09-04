@@ -201,6 +201,26 @@ data:
   DB_PASSWORD: cGFzc3dvcmQ=
 ```
 
+<img width="298" height="554" alt="image" src="https://github.com/user-attachments/assets/db2ff65b-9410-4b1c-b545-df2aed2640fc" />
+
+| Component               | Purpose                                           |
+| ----------------------- | ------------------------------------------------- |
+| **AWS Secrets Manager** | Stores actual secret; source of truth             |
+| **IAM Role**            | Allows access to required AWS secrets             |
+| **IRSA**                | Maps K8s ServiceAccount → IAM Role                |
+| **ServiceAccount**      | Identity used by ESO Pod                          |
+| **ESO**                 | Fetches AWS secret and creates/updates K8s Secret |
+| **ClusterSecretStore**  | Defines AWS provider/authentication               |
+| **ExternalSecret**      | Defines which AWS secret to retrieve              |
+| **Kubernetes Secret**   | ESO-created secret consumed by application        |
+| **ArgoCD**              | Deploys manifests from Git                        |
+
+Interview answer
+
+"We store secrets in AWS Secrets Manager and never commit actual values to Git. ESO runs in EKS using a dedicated ServiceAccount. Through IRSA, that ServiceAccount is associated with an IAM role having least-privilege access to Secrets Manager. ClusterSecretStore defines the AWS provider, and ExternalSecret specifies which secret to retrieve. ESO fetches the secret and synchronizes it into a Kubernetes Secret, which the application Pod consumes using secretKeyRef. ArgoCD only deploys the configuration; it never handles the actual secret value."
+
+
+
 **Interview Q&A**
 > **Q: How do you manage secrets in a GitOps workflow without exposing them in Git?**
 > A: I've used Sealed Secrets — encrypt the Secret with the cluster's public key via `kubeseal`, and only the encrypted SealedSecret goes into Git; the in-cluster controller decrypts it back into a normal Secret. Alternatively, External Secrets Operator pulls secrets at runtime from AWS Secrets Manager/Parameter Store, so nothing sensitive ever touches Git — that's what I use on my current project.
