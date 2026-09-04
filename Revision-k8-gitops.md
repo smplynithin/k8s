@@ -225,6 +225,8 @@ Interview answer
 
 "We store secrets in AWS Secrets Manager and never commit actual values to Git. ESO runs in EKS using a dedicated ServiceAccount. Through IRSA, that ServiceAccount is associated with an IAM role having least-privilege access to Secrets Manager. ClusterSecretStore defines the AWS provider, and ExternalSecret specifies which secret to retrieve. ESO fetches the secret and synchronizes it into a Kubernetes Secret, which the application Pod consumes using secretKeyRef. ArgoCD only deploys the configuration; it never handles the actual secret value."
 
+"We use External Secrets Operator to integrate EKS with AWS Secrets Manager. We configure a ClusterSecretStore to define how ESO connects to AWS Secrets Manager, and an ExternalSecret to specify which secret we need. ESO uses the IAM role associated with its ServiceAccount through IRSA to retrieve the secret from AWS and creates or updates the corresponding Kubernetes Secret. The application Pod then consumes that Kubernetes Secret."
+
 
 
 **Interview Q&A**
