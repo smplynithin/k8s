@@ -201,7 +201,8 @@ data:
   DB_PASSWORD: cGFzc3dvcmQ=
 ```
 
-<img width="298" height="554" alt="image" src="https://github.com/user-attachments/assets/db2ff65b-9410-4b1c-b545-df2aed2640fc" />
+<img width="298" height="554" alt="image" src="https://github.com/user-attachments/assets/db2ff65b-9410-4b1c-b545-df2aed2640fc" />   ![Uploading image.png…]()
+
 
 | Component               | Purpose                                           |
 | ----------------------- | ------------------------------------------------- |
